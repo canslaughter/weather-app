@@ -1,7 +1,12 @@
-function App() {
+import Nav from './components/Nav';
+import Cards from './components/Cards';
+
+const App = () => {
   return (
-    <div>
-    </div>
+    <main className="container-lg">
+       <Nav />
+       <Cards />
+    </main>
   );
 }
 
