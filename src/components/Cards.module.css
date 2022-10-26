@@ -1,0 +1,17 @@
+
+.Main {
+  margin: 0;
+  padding: 1em;
+  list-style: none;
+
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 22em);
+  justify-content: center;
+}
+
+.Item {
+  margin: 0;
+  padding: 0;
+}
+

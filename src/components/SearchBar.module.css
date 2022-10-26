@@ -1,0 +1,15 @@
+
+.TextField::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 1.5em;
+  width: 1.5em;
+  background: url(./delete-left-solid.svg) no-repeat 50% 50%;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.TextField:focus::-webkit-search-cancel-button {
+  opacity: .7;
+  pointer-events: all;
+}
