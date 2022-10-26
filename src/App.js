@@ -36,10 +36,9 @@ const App = () => {
        <Nav
          addCity={searchStr => {
            const percentEncSearchStr = encodeURIComponent(searchStr);
-           fetch(`http://api.openweathermap.org/data/2.5/weather?q=${percentEncSearchStr}&appid=${WEATHER_API_KEY}&units=metric`)
+           fetch(`https://api.openweathermap.org/data/2.5/weather?q=${percentEncSearchStr}&appid=${WEATHER_API_KEY}&units=metric`)
            .then(r => r.json())
            .then(res => {
-             console.log(res);
              if(res.main){
                const newCity = {
                  min: Math.round(res.main.temp_min * 10) / 10,

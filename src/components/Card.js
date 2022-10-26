@@ -51,7 +51,7 @@ const Card = props => {
                 className={styles.Img}
                 alt={imgDesc}
                 aria-describedby={tooltipId}
-                src={`http://openweathermap.org/img/wn/${props.img.src}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${props.img.src}@2x.png`}
               />
             </OverlayTrigger>
           </div>
