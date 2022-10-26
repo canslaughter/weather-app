@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/canslaughter.github.com/weather-app/static/css/main.ca3e7770.css",
+    "main.js": "/canslaughter.github.com/weather-app/static/js/main.ed838435.js",
+    "static/js/787.d9312eb8.chunk.js": "/canslaughter.github.com/weather-app/static/js/787.d9312eb8.chunk.js",
+    "index.html": "/canslaughter.github.com/weather-app/index.html",
+    "static/media/delete-left-solid.svg": "/canslaughter.github.com/weather-app/static/media/delete-left-solid.f93bb9db8e3ebc589387.svg",
+    "main.ca3e7770.css.map": "/canslaughter.github.com/weather-app/static/css/main.ca3e7770.css.map",
+    "main.ed838435.js.map": "/canslaughter.github.com/weather-app/static/js/main.ed838435.js.map",
+    "787.d9312eb8.chunk.js.map": "/canslaughter.github.com/weather-app/static/js/787.d9312eb8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ca3e7770.css",
+    "static/js/main.ed838435.js"
+  ]
+}
