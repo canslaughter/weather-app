@@ -1,6 +1,24 @@
+import {useAppState} from '../appstate';
+import {useMemo} from 'react';
+
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Card from './Card';
+
+const MemoizedCards = props => {
+  const {cities, removeCity} = useAppState();
+  const cards = useMemo(() => {
+    return (
+      <Cards
+        cities={cities}
+        removeCity={removeCity}
+      />
+    );
+  }, [cities, removeCity]);
+  return cards;
+};
+
+export default MemoizedCards;
 
 const Cards = props => (
   <Container maxWidth="lg">
@@ -30,5 +48,3 @@ const Cards = props => (
     </Box>
   </Container>
 );
-
-export default Cards;

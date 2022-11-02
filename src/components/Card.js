@@ -121,12 +121,14 @@ const translations = {
   'mist': 'Niebla',
   'clear sky': 'Despejado',
   'overcast clouds': 'Nublado',
+  'scattered clouds': 'Nubes dispersas',
   'light rain': 'Lluvia ligera',
   'light intensity shower rain': 'Lluvia ligera',
   'few clouds': 'Ligeramente nuboso',
   'broken clouds': 'Parcialmente nublado',
   'drizzle': 'Llovizna',
   'light intensity drizzle': 'Llovizna ligera',
+  'light snow': 'Nevada ligera',
 }
 
 const TempTable = props => {

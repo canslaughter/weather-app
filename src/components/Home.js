@@ -1,10 +1,30 @@
+import {useAppState} from '../appstate';
+import {useMemo} from 'react';
+
 import {Helmet} from 'react-helmet-async';
 import Box from '@mui/material/Box';
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import {Link as RouterLink} from 'react-router-dom';
 import SearchForm from './SearchForm';
+
+const MemoizedHome = props => {
+  const {fetchCity} = useAppState();
+  const home = useMemo(() => {
+    return (
+      <Home fetchCity={fetchCity}>
+        {props.children}
+      </Home>
+    );
+  }, [fetchCity, props]);
+  return home;
+};
+
+export default MemoizedHome;
 
 const Home = props => {
   return (
@@ -25,15 +45,13 @@ const Home = props => {
           py: t => ({xs: t.spacing(10), sm: t.spacing(11)}),
         }}
       >
-        <CustomAppBar top onAddCity={props.onAddCity} />
+        <CustomAppBar top onAddCity={props.fetchCity} />
         {props.children}
-        <CustomAppBar onAddCity={props.onAddCity} />
+        <CustomAppBar onAddCity={props.fetchCity} />
       </Box>
     </>
   );
 };
-
-export default Home;
 
 const CustomAppBar = props => {
   const top = (x,y) => props.top ? x : y;
@@ -60,15 +78,24 @@ const CustomAppBar = props => {
         >
           {top(
             <Paper
-              component="img"
+              component={RouterLink}
+              to="/"
               sx={{
                 borderRadius: '50%',
                 height: '3em',
                 width: '3em',
                 mr: 2,
               }}
-              src="/weather-app/logo512.png"
-            />
+            >
+              <Box
+                component="img"
+                sx={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                src="/weather-app/logo512.png"
+              />
+            </Paper>
           )}
           {top(
             <Typography
@@ -77,7 +104,13 @@ const CustomAppBar = props => {
               sx={{flexGrow: 1}}
               noWrap
             >
-              El Clima en el Mundo
+              <Link
+                component={RouterLink}
+                to="/"
+                underline="none"
+              >
+                El Clima en el Mundo
+              </Link>
             </Typography>
           )}
           <Box
