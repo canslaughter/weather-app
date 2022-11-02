@@ -1,6 +1,6 @@
 import {useReducer} from 'react';
-import Nav from './components/Nav';
 import Cards from './components/Cards';
+import Home from './components/Home';
 
 const WEATHER_API_KEY = '4ae2636d8dfbdc3044bede63951a019b';
 
@@ -31,36 +31,39 @@ const App = () => {
       return state;
     }
   }, initialState);
+
+  const fetchCity = searchStr => {
+    const DOMAIN = 'https://api.openweathermap.org';
+    const PATH = '/data/2.5/weather';
+    const percentEncSearchStr = encodeURIComponent(searchStr);
+    const QUERY = `?q=${percentEncSearchStr}&appid=${WEATHER_API_KEY}&units=metric`;
+    fetch(DOMAIN + PATH + QUERY)
+    .then(r => r.json())
+    .then(res => {
+      if (res.main) {
+        const newCity = {
+          min: Math.round(res.main.temp_min * 10) / 10,
+          max: Math.round(res.main.temp_max * 10) / 10,
+          img: {
+            src: res.weather[0].icon,
+            description: res.weather[0].description,
+          },
+          name: res.name,
+        };
+        dispatch({type: ADD_CITY, payload: newCity});
+      } else {
+        alert("Ciudad no encontrada");
+      }
+    });
+  };
+
   return (
-    <main className="container-fluid">
-       <Nav
-         addCity={searchStr => {
-           const percentEncSearchStr = encodeURIComponent(searchStr);
-           fetch(`https://api.openweathermap.org/data/2.5/weather?q=${percentEncSearchStr}&appid=${WEATHER_API_KEY}&units=metric`)
-           .then(r => r.json())
-           .then(res => {
-             if(res.main){
-               const newCity = {
-                 min: Math.round(res.main.temp_min * 10) / 10,
-                 max: Math.round(res.main.temp_max * 10) / 10,
-                 img: {
-                   src: res.weather[0].icon,
-                   description: res.weather[0].description,
-                 },
-                 name: res.name,
-               };
-               dispatch({type: ADD_CITY, payload: newCity});
-             } else {
-               alert("Ciudad no encontrada");
-             }
-           });
-         }}
-       />
+    <Home onAddCity={fetchCity}>
        <Cards
          cities={state.cities}
          removeCity={id => void dispatch({type: REMOVE_CITY, payload: id})}
        />
-    </main>
+    </Home>
   );
 }
 
